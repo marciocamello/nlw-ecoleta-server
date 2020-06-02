@@ -1,5 +1,7 @@
 # Ecoleta Server API
 
+[logo]: https://github.com/marciocamello/nlw-ecoleta-server/capa.jpeg
+
 :rocket: Technologies
 
 - NodeJS
