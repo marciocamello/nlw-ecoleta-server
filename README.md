@@ -1,6 +1,6 @@
 # Ecoleta Server API
 
-[logo]: https://github.com/marciocamello/nlw-ecoleta-server/capa.jpeg
+![alt text](https://github.com/marciocamello/nlw-ecoleta-server/blob/master/capa.jpeg)
 
 :rocket: Technologies
 
