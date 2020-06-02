@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import knex from '../database/connection'
+import Items from '../database/models/Items'
 
 class ItemsController {
   async index (request: Request, response: Response): Promise<Response> {
-    const items = await knex('items').select('*')
+    const items = await Items.index()
 
     const serializedItems = items.map(item => {
       return {
