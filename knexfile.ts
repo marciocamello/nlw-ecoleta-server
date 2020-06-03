@@ -1,5 +1,7 @@
 const path = require('path')
-require('./src/config')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 module.exports = {
   client: 'mysql',
