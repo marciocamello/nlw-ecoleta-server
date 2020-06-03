@@ -6,7 +6,9 @@ import './config'
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: process.env.BASE_URL
+}))
 app.use(express.json())
 app.use(routes)
 app.use(express.urlencoded({ extended: false }))

@@ -4,7 +4,7 @@ import Items from '../database/models/Items'
 class ItemsController {
   async index (request: Request, response: Response): Promise<Response> {
     const items = await Items.index()
-    const imageUrl = process.env.IMAGE_URL
+    const imageUrl = process.env.BASE_URL
 
     const serializedItems = items.map(item => {
       return {
