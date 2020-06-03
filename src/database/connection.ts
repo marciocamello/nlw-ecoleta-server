@@ -1,5 +1,5 @@
 import knex from 'knex'
-import './config'
+import '../config'
 
 const connection = knex({
   client: 'mysql',
