@@ -12,4 +12,8 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 
-app.listen(3333)
+const port = process.env.PORT || 3333
+
+app.listen(port, () => {
+  console.log(`Start Ecoleta API on port ${port}`)
+})
