@@ -1,8 +1,15 @@
 language: node_js
+
 node_js:
 - lts/*
-script:
-- npm run build
+
+before_script:
+  - npm run build
+
+after_success:
+  - npm run knex:migrate
+  - npm run knex:seed
+
 deploy:
   provider: heroku
   api_key:
