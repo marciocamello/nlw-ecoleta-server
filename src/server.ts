@@ -7,7 +7,7 @@ import './config'
 const app = express()
 
 app.use(cors({
-  origin: process.env.BASE_URL
+  origin: process.env.ORIGIN_URL
 }))
 app.use(express.json())
 app.use(routes)
