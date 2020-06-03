@@ -1,5 +1,5 @@
-import path from 'path'
-import './src/config'
+const path = require('path')
+require('./src/config')
 
 module.exports = {
   client: 'mysql',
