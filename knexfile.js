@@ -1,5 +1,6 @@
-import path from 'path'
-import './src/config'
+const path = require('path')
+const dotenv = require('dotenv')
+dotenv.config()
 
 module.exports = {
   client: 'mysql',
@@ -14,10 +15,10 @@ module.exports = {
     max: 10
   },
   migrations: {
-    directory: path.resolve(__dirname, 'src', 'database', 'migrations')
+    directory: path.resolve(__dirname, process.env.BUILD, 'database', 'migrations')
   },
   seeds: {
-    directory: path.resolve(__dirname, 'src', 'database', 'seeds')
+    directory: path.resolve(__dirname, process.env.BUILD, 'database', 'seeds')
   },
   useNullAsDefault: true
 }
