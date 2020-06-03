@@ -1,10 +1,17 @@
 import knex from 'knex'
-import path from 'path'
+import './config'
 
 const connection = knex({
-  client: 'sqlite3',
+  client: 'mysql',
   connection: {
-    filename: path.resolve(__dirname, './database.sqlite')
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
+  },
+  pool: {
+    min: 2,
+    max: 10
   },
   useNullAsDefault: true
 })

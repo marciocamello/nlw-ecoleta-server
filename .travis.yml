@@ -3,7 +3,6 @@ node_js:
 - lts/*
 before_script:
 - npm run build
-after_success:
 - npm run knex:migrate
 - npm run knex:seed
 deploy:

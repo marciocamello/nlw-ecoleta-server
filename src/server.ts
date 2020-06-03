@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './routes'
 import cors from 'cors'
 import path from 'path'
+import './config'
 
 const app = express()
 
