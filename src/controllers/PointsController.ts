@@ -13,7 +13,14 @@ class PointsController {
 
       const points = await Points.filteredPoints(parsedItems, city, uf)
 
-      return response.json(points)
+      const serializedPoints = points.map(point => {
+        return {
+          ...point,
+          image_url: `${process.env.BASE_URL}/uploads/${point.image}`
+        }
+      })
+
+      return response.json(serializedPoints)
     } catch (e) {
       return response.status(400).json({ message: e.message })
     }
@@ -29,10 +36,15 @@ class PointsController {
         return response.status(400).json({ message: 'Point not found.' })
       }
 
+      const serializedPoint = {
+        ...point,
+        image_url: `${process.env.BASE_URL}/uploads/${point.image}`
+      }
+
       const items = await Points.items(id)
 
       return response.json({
-        point, items
+        serializedPoint, items
       })
     } catch (e) {
       return response.status(400).json({ message: e.message })
@@ -53,7 +65,7 @@ class PointsController {
       } = request.body
 
       const point = {
-        image: 'https://images.unsplash.com/photo-1556767576-5ec41e3239ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+        image: request.file.filename,
         name,
         email,
         whatsapp,
@@ -67,18 +79,26 @@ class PointsController {
 
       const point_id = insertdIds[0]
 
-      const pointItems = items.map((item_id: number) => {
-        return {
-          item_id,
-          point_id: point_id
-        }
-      })
+      const pointItems = items
+        .split(',')
+        .map((item: string) => Number(item.trim()))
+        .map((item_id: number) => {
+          return {
+            item_id,
+            point_id: point_id
+          }
+        })
+
+      const serializedPoint = {
+        ...point,
+        image_url: `${process.env.BASE_URL}/uploads/${point.image}`
+      }
 
       await PointItems.save(pointItems)
 
       return response.json({
         id: point_id,
-        ...point
+        ...serializedPoint
       })
     } catch (e) {
       return response.status(400).json({ message: e.message })
