@@ -44,7 +44,7 @@ class PointsController {
       const items = await Points.items(id)
 
       return response.json({
-        serializedPoint, items
+        point: serializedPoint, items
       })
     } catch (e) {
       return response.status(400).json({ message: e.message })
